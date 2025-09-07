@@ -22,12 +22,12 @@ jobs:
 
     - name: Install vitasdk
       run: |
-        export VITASDK=/usr/local/vitasdk
-        export PATH=$VITASDK/bin:$PATH
         git clone https://github.com/vitasdk/vdpm
         cd vdpm
         sudo ./bootstrap-vitasdk.sh
         ./install-all.sh
+        export VITASDK=/usr/local/vitasdk
+        export PATH=$VITASDK/bin:$PATH
 
     - name: Build ds4vita
       run: |
