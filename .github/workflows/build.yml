@@ -18,7 +18,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt-get install -y make git-core cmake python build-essential python3-pip curl
+        sudo apt-get install -y make git-core cmake build-essential python3-pip curl
 
     - name: Install vitasdk
       run: |
