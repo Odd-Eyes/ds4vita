@@ -21,9 +21,9 @@ jobs:
         sudo apt-get install -y make git-core cmake build-essential python3-pip curl
 
     - name: Set VITASDK environment
-      run: |
-        echo "export VITASDK=/usr/local/vitasdk" >> $GITHUB_ENV
-        echo "export PATH=\$VITASDK/bin:\$PATH" >> $GITHUB_ENV
+      env:
+        VITASDK: /usr/local/vitasdk
+        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
         
     - name: Install vitasdk
       run: |
