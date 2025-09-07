@@ -19,20 +19,14 @@ jobs:
       run: |
         sudo apt update
         sudo apt-get install -y make git-core cmake build-essential python3-pip curl
-
-    - name: Set VITASDK environment
-      env:
-        VITASDK: /usr/local/vitasdk
-        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
-      run: |
-        echo $VITASDK
-        echo $PATH
         
     - name: Install vitasdk
       run: |
         git clone https://github.com/vitasdk/vdpm
         cd vdpm
         sudo ./bootstrap-vitasdk.sh
+        export VITASDK=/usr/local/vitasdk
+        export PATH=$VITASDK/bin:$PATH
         ./install-all.sh
         
     - name: Build ds4vita
