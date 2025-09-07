@@ -10,9 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      env:
-        VITASDK: /usr/local/vitasdk
-        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
 
     steps:
     - name: Checkout repository
@@ -27,10 +24,11 @@ jobs:
       run: |
         git clone https://github.com/vitasdk/vdpm
         cd vdpm
-        sudo ./bootstrap-vitasdk.sh
-        sudo export VITASDK=/usr/local/vitasdk
-        sudo export PATH=$VITASDK/bin:$PATH
-        sudo ./install-all.sh
+        ./bootstrap-vitasdk.sh
+        ./install-all.sh
+
+      env:
+        VITASDK: /usr/local/vitasdk
         
     - name: Build ds4vita
       run: |
@@ -38,3 +36,12 @@ jobs:
         cd build
         cmake ..
         make
+
+      env:
+        VITASDK: /usr/local/vitasdk
+
+    - name: Upload
+      uses: actions/upload-artifact@v2
+      with:
+        name: vitacontrol
+        path: build/ds4vita.skprx
