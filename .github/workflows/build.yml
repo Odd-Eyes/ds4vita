@@ -41,7 +41,7 @@ jobs:
         VITASDK: /usr/local/vitasdk
 
     - name: Upload
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: vitacontrol
         path: build/ds4vita.skprx
