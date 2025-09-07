@@ -14,18 +14,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Install build tools
-      run: sudo apt-get update && sudo apt-get install -y build-essential && git clone https://github.com/vitasdk/vdpm && cd vdpm && ./bootstrap-vitasdk.sh && ./install-all.sh
-
-    - name: Build project
+ - name: Install dependencies
       run: |
-        mkdir -p build
+        sudo apt update
+        sudo apt install -y cmake build-essential python3-pip curl
+
+    - name: Install vitasdk
+      run: |
+        pip3 install --user vitasdk-installer
+        ~/.local/bin/vitasdk-installer install
+        echo "export VITASDK=$HOME/vitasdk" >> $GITHUB_ENV
+        echo "export PATH=$HOME/vitasdk/bin:$PATH" >> $GITHUB_ENV
+
+    - name: Build ds4vita
+      run: |
+        mkdir build
         cd build
         cmake ..
         make
-
-    - name: Package artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-output
-        path: build/
