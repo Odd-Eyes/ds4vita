@@ -24,6 +24,9 @@ jobs:
       env:
         VITASDK: /usr/local/vitasdk
         PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
+      run: |
+        echo $VITASDK
+        echo $PATH
         
     - name: Install vitasdk
       run: |
