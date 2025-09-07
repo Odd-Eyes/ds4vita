@@ -26,9 +26,12 @@ jobs:
         cd vdpm
         sudo ./bootstrap-vitasdk.sh
         ./install-all.sh
-        export VITASDK=/usr/local/vitasdk
-        export PATH=$VITASDK/bin:$PATH
 
+    - name: Set VITASDK environment
+      run: |
+        echo "export VITASDK=/usr/local/vitasdk" >> $GITHUB_ENV
+        echo "/usr/local/vitasdk/bin" >> $GITHUB_PATH
+        
     - name: Build ds4vita
       run: |
         mkdir build
