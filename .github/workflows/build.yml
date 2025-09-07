@@ -23,8 +23,7 @@ jobs:
     - name: Set VITASDK environment
       run: |
         echo "export VITASDK=/usr/local/vitasdk" >> $GITHUB_ENV
-        echo "export PATH=$VITASDK/bin:$PATH" >> $GITHUB_ENV
-        echo "/usr/local/vitasdk/bin" >> $GITHUB_PATH
+        echo "export PATH=\$VITASDK/bin:\$PATH" >> $GITHUB_ENV
         
     - name: Install vitasdk
       run: |
