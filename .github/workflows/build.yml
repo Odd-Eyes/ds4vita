@@ -29,6 +29,7 @@ jobs:
 
       env:
         VITASDK: /usr/local/vitasdk
+        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
         
     - name: Build ds4vita
       run: |
@@ -39,9 +40,11 @@ jobs:
 
       env:
         VITASDK: /usr/local/vitasdk
+        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
 
     - name: Upload
       uses: actions/upload-artifact@v4
       with:
         name: vitacontrol
         path: build/ds4vita.skprx
+        
