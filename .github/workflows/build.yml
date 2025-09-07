@@ -11,8 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
       env:
-      VITASDK: /usr/local/vitasdk
-      PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
+        VITASDK: /usr/local/vitasdk
+        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
 
     steps:
     - name: Checkout repository
