@@ -29,7 +29,6 @@ jobs:
 
       env:
         VITASDK: /usr/local/vitasdk
-        PATH: /usr/local/vitasdk/bin:${{ env.PATH }}
         
     - name: Build ds4vita
       run: |
