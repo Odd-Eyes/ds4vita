@@ -31,12 +31,12 @@ if (RELEASE)
 	add_definitions(-DRELEASE)
 endif(RELEASE)
 
-add_executable(${PROJECT_NAME}.elf
+add_executable(${PROJECT_NAME}
 	main.c
 	log.c
 )
 
-target_link_libraries(${PROJECT_NAME}.elf
+target_link_libraries(${PROJECT_NAME}
 	gcc
 	taihenForKernel_stub
 	SceSysclibForDriver_stub
