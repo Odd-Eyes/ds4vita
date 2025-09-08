@@ -49,18 +49,19 @@ target_link_libraries(${PROJECT_NAME}.elf
 	SceCtrlForDriver_stub
 )
 
-set_target_properties(${PROJECT_NAME}.elf
+set_target_properties(${PROJECT_NAME}
 	PROPERTIES LINK_FLAGS "-nostdlib"
 	COMPILE_FLAGS "-D__VITA_KERNEL__"
 )
 
-add_custom_target(${PROJECT_NAME}.skprx ALL
-	COMMAND vita-elf-create -e ${CMAKE_SOURCE_DIR}/${PROJECT_NAME}.yml ${PROJECT_NAME}.elf ${PROJECT_NAME}.velf
-	COMMAND vita-make-fself -c ${PROJECT_NAME}.velf ${PROJECT_NAME}.skprx
+vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME}
+  UNSAFE
+  CONFIG ${PROJECT_NAME}.yml
 )
-add_dependencies(${PROJECT_NAME}.skprx ${PROJECT_NAME}.elf)
+ 
+vita_create_stubs(stubs ${PROJECT_NAME} ${PROJECT_NAME}-weak.yml KERNEL)
 
-add_custom_target(send
-	COMMAND curl -T ${PROJECT_NAME}.skprx ftp://$(PSVITAIP):1337/ux0:/data/tai/kplugin.skprx
-	DEPENDS ${PROJECT_NAME}.skprx
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/stubs/
+  DESTINATION lib
+  FILES_MATCHING PATTERN "*.a"
 )
