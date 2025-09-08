@@ -59,7 +59,6 @@ vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME}
   UNSAFE
   CONFIG ${PROJECT_NAME}.yml
 )
-add_dependencies(${PROJECT_NAME}.skprx ${PROJECT_NAME})
  
 vita_create_stubs(stubs ${PROJECT_NAME} ${PROJECT_NAME}-weak.yml KERNEL)
 
