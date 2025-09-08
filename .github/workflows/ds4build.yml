@@ -2,9 +2,9 @@ name: DS4Vita
 
 on:
   push:
-    branches: [ main ]
+    branches: [ all ]
   pull_request:
-    branches: [ main ]
+    branches: [ all ]
   workflow_dispatch:
 
 jobs:
