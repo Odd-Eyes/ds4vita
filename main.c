@@ -847,19 +847,19 @@ static void patch_ctrl_data_ds4(const struct ds4_input_report *ds4, SceCtrlData 
 			buttons |= SCE_CTRL_TOUCHPAD;
 	}
 
-	ldx = ds4->left_x - 127;
-	ldy = ds4->left_y - 127;
-	rdx = ds4->right_x - 127;
-	rdy = ds4->right_y - 127;
+	ldx = ds4->left_x - 128;
+	ldy = ds4->left_y - 128;
+	rdx = ds4->right_x - 128;
+	rdy = ds4->right_y - 128;
 
 	if (port != 0)
-		pad_data->lx = pad_data->ly = pad_data->rx = pad_data->ry = 127;
+		pad_data->lx = pad_data->ly = pad_data->rx = pad_data->ry = 128;
 
-	pad_data->lx = clamp(pad_data->lx + ds4->left_x - 127, 0, 255);
-	pad_data->ly = clamp(pad_data->ly + ds4->left_y - 127, 0, 255);
+	pad_data->lx = abs(ds4->left_x - 128);
+	pad_data->ly = abs(ds4->left_y - 128);
 
-	pad_data->rx = clamp(pad_data->rx + ds4->right_x - 127, 0, 255);
-	pad_data->ry = clamp(pad_data->ry + ds4->right_y - 127, 0, 255);
+	pad_data->rx = abs(ds4->right_x - 128);
+	pad_data->ry = abs(ds4->right_y - 128);
 
 	if (ds4->ps)
 		ksceCtrlSetButtonEmulation(0, 0, 0, SCE_CTRL_INTERCEPTED, 16);
