@@ -723,7 +723,6 @@ int module_start(SceSize argc, const void *args)
 	opt.uselock = 0x100;
 	opt.field_8 = 0x10000;
 	opt.field_C = 0;
-	opt.field_10 = 0;
 	opt.field_14 = 0;
 	opt.field_18 = 0;
 
