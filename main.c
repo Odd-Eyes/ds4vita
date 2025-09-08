@@ -30,7 +30,7 @@ int __errno;
 #define DS4_TOUCHPAD_H 940
 #define DS4_TOUCHPAD_W_DEAD 60
 #define DS4_TOUCHPAD_H_DEAD 120
-#define DS4_JOYSTICK_THRESHOLD 50
+#define DS4_JOYSTICK_THRESHOLD 5
 #define DS4_TRIGGER_THRESHOLD 0
 
 #define DS5_VID 0x054C
@@ -855,11 +855,11 @@ static void patch_ctrl_data_ds4(const struct ds4_input_report *ds4, SceCtrlData 
 	if (port != 0)
 		pad_data->lx = pad_data->ly = pad_data->rx = pad_data->ry = 128;
 
-	pad_data->lx = abs(ds4->left_x - 128);
-	pad_data->ly = abs(ds4->left_y - 128);
+	pad_data->lx = ds4->left_x;
+	pad_data->ly = ds4->left_y;
 
-	pad_data->rx = abs(ds4->right_x - 128);
-	pad_data->ry = abs(ds4->right_y - 128);
+	pad_data->rx = ds4->right_x;
+	pad_data->ry = ds4->right_y;
 
 	if (ds4->ps)
 		ksceCtrlSetButtonEmulation(0, 0, 0, SCE_CTRL_INTERCEPTED, 16);
