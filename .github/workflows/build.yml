@@ -18,18 +18,31 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt update
-        sudo apt install -y cmake build-essential python3-pip curl
-
+        sudo apt-get install -y make git-core cmake build-essential python3-pip curl
+        
     - name: Install vitasdk
       run: |
-        pip3 install --user vitasdk-installer
-        ~/.local/bin/vitasdk-installer install
-        echo "export VITASDK=$HOME/vitasdk" >> $GITHUB_ENV
-        echo "export PATH=$HOME/vitasdk/bin:$PATH" >> $GITHUB_ENV
+        git clone https://github.com/vitasdk/vdpm
+        cd vdpm
+        ./bootstrap-vitasdk.sh
+        ./install-all.sh
 
+      env:
+        VITASDK: /usr/local/vitasdk
+        
     - name: Build ds4vita
       run: |
         mkdir build
         cd build
         cmake ..
         make
+
+      env:
+        VITASDK: /usr/local/vitasdk
+
+    - name: Upload
+      uses: actions/upload-artifact@v4
+      with:
+        name: vitacontrol
+        path: build/ds34vita.skprx
+        
