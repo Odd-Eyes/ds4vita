@@ -30,7 +30,7 @@ jobs:
       env:
         VITASDK: /usr/local/vitasdk
         
-    - name: Build ds4vita
+    - name: Build ds34vita
       run: |
         mkdir build
         cd build
