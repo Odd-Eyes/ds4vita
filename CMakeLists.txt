@@ -58,8 +58,6 @@ vita_create_self(${PROJECT_NAME}.skprx ${PROJECT_NAME}
   UNSAFE
   CONFIG ${PROJECT_NAME}.yml
 )
- 
-vita_create_stubs(stubs ${PROJECT_NAME}.yml KERNEL)
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/stubs/
   DESTINATION lib
